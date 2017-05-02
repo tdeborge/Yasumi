@@ -141,5 +141,6 @@
 	</build>
 	<modules>
 		<module>GUIMonolithic</module>
+		<module>GUIScaleUp</module>
 	</modules>
 </project>
