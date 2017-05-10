@@ -62,6 +62,8 @@ public class Puzzler implements Runnable {
 		int quadrant = 1;
 		for (int i = 0; i < pGrid.getYPos();i++ ) {
 			for (int j = 0; j < pGrid.getXPos(); j++ ) {
+
+				
 				Block bl = pBox.getBlock(0);
 				//Mark block as used
 				bl.setUsed(true);
@@ -235,6 +237,7 @@ public class Puzzler implements Runnable {
 			}
 			else {
 				solutions.add(grid);
+				pGrid.showGrid(grid);
 				if (showSolution) {
 					if (this.pcb != null) {
 					try {

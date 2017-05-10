@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+    <camelContext id="camelContext-007a7215-2621-43ab-b981-852874814bf2" xmlns="http://camel.apache.org/schema/blueprint">
+        <route id="MockRoute To Check Blueprint Loading" shutdownRunningTask="CompleteAllTasks">
+            <description>Initiator Route</description>
+            <from id="_from1" uri="timer:LauchPuzzler?repeatCount=1">
+                <description>Timer to fire the process</description>
+            </from>
+            <setBody id="set the body">
+                <constant>MOCK ROUTE TEST</constant>
+            </setBody>
+            <log id="bodylogger" message="this is a message with ${body}"/>
+            <to id="_to1" uri="mock:catchMessage"/>
+        </route>
+    </camelContext>
+</blueprint>
