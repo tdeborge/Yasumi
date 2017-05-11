@@ -32,7 +32,7 @@ public class PuzzleSolverForwarder implements Processor {
 
 		if (exchange.getIn().getHeader("Puzzler.Process.Tuning.BucketSize") == null
 				|| exchange.getIn().getHeader("Puzzler.Process.Tuning.ComputeLevel") == null) {
-			logger.warn("No Headers Set on the incoming message ... looking for BucketSize and ComputeLevel");
+			logger.debug("No Headers Set on the incoming message ... looking for BucketSize and ComputeLevel");
 			bucketSize = 200;
 			computeLevel = 3;
 		} else {
@@ -83,15 +83,21 @@ public class PuzzleSolverForwarder implements Processor {
 			placeNextBlockOnGrid(pb.getGrid(), pb.getDepth(), solutions,pGrid,pBox);
 		}
 		
-		logger.info("total solutions = " + solutions.size());
+		logger.debug("total solutions = " + solutions.size());
 		//Preparing the return message ;)
 		//Setting the headers to find the way back to the requestor
 		if(al.size() > 0){		
 			exchange.getIn().setHeader("PuzzleUnit", al.get(0).getPuzzleUnit());
 			exchange.getIn().setHeader("puzzledepth", Integer.parseInt(ResourceLoader.getString("blocks.numbloks")));
+			if(al.get(0).getPuzzleUnit().startsWith("NOREPLY:")){
+				logger.debug("NO DESTINATION SET");
+			}
+			else{
+				logger.debug("Setting the DESTINATION");
+				exchange.getIn().setHeader("CamelJmsDestinationName", al.get(0).getPuzzleUnit());
+			}
 		}
 		exchange.getIn().setBody(solutions);
-
 	}
 
 	@SuppressWarnings("unchecked")

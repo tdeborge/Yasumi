@@ -38,20 +38,20 @@
     <camelContext id="FuseYasumiBoxPuzzler" trace="false" xmlns="http://camel.apache.org/schema/blueprint">
         <route id="PuzzleBox Handler">
             <from id="JMSPuzzleBoxStarter" uri="box.PuzzlerJMSConnection:queue:{{Puzzler.PuzzleBox.Destination}}"/>
-            <log id="PuzzleBoxLogger" message="PuzzleBox Received: ${body}"/>
+            <log loggingLevel="DEBUG" id="PuzzleBoxLogger" message="PuzzleBox Received: ${body}"/>
             <process id="ProcessInitBoxes" ref="PuzzleBoxInitHandler"/>
-            <log id="PuzzleBoxLogger1" message="MessageINIT: ${header.validMessage}"/>
+            <log loggingLevel="DEBUG" id="PuzzleBoxLogger1" message="MessageINIT: ${header.validMessage}"/>
             <choice id="_choice1">
                 <when id="_when1">
                     <simple>${header.validMessage} == true</simple>
                     <setHeader headerName="puzzledepth" id="_setHeader1">
-                    	<simple resultType="java.lang.Integer">1</simple>
+                        <simple resultType="java.lang.Integer">1</simple>
                         <!-- <constant>1</constant> -->
                     </setHeader>
                     <to id="ForwardToJMSHandler" uri="box.PuzzlerJMSConnection:queue:{{Puzzler.Forward.Destination}}?timeToLive=300000&amp;deliveryMode=0"/>
                 </when>
                 <otherwise id="_otherwise1">
-                    <log id="_log1" message="message is not validated ... not forwarding"/>
+                    <log loggingLevel="DEBUG" id="_log1" message="message is not validated ... not forwarding"/>
                 </otherwise>
             </choice>
             <to id="mock1" uri="mock:catchMessage"/>

@@ -23,11 +23,17 @@ public class PuzzleStarter implements Processor {
 
 		// for (int i = pGrid.getYPos() -1; i < pGrid.getYPos(); i++) {
 		// for (int j = pGrid.getXPos() -1; j < pGrid.getXPos(); j++) {
+		logger.info("Starting a puzzleSession");
 		for (int i = 0; i < pGrid.getYPos(); i++) {
 			for (int j = 0; j < pGrid.getXPos(); j++) {
-				logger.info("Creating Box for coordinates [" + j + "," + i + "]");
+				logger.debug("Creating Box for coordinates [" + j + "," + i + "]");
 				PuzzleBox pb = new PuzzleBox(j, i);
-				pb.setPuzzleUnit(ex.getExchangeId());
+				if(ex.getIn().getHeader("returnDestination") == null){
+					pb.setPuzzleUnit("NOREPLY:" + ex.getExchangeId());
+				}
+				else{
+					pb.setPuzzleUnit((String) ex.getIn().getHeader("returnDestination"));
+				}
 				pb.setDepth(0);
 				plist.add(pb);
 			}

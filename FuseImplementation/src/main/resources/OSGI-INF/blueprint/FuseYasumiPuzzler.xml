@@ -38,8 +38,8 @@
     <bean class="com.rhworkshop.msa.aggregators.PuzzleBoxAggregator" id="PuzzleBoxAggregator"/> -->
     <camelContext id="FuseYasumiPuzzler" trace="false" xmlns="http://camel.apache.org/schema/blueprint">
         <route id="StartPuzzlerRoute">
-            <from id="PuzllerJMSStart" uri="PuzzlerJMSConnection:queue:{{Puzzler.Start.Destination}}"/>
             <!-- <process id="SendMessagesOff" ref="MessageProducingProcessor"/> -->
+            <from id="PuzllerJMSStart" uri="PuzzlerJMSConnection:queue:{{Puzzler.Start.Destination}}"/>
             <log id="PuzzlerLogger1" message="Start-Message Received "/>
             <setHeader headerName="ForwardDestination" id="_setHeader1">
                 <simple>PuzzlerJMSConnection:queue:{{Puzzler.PuzzleBox.Destination}}?timeToLive=300000&amp;deliveryMode=0</simple>
@@ -49,7 +49,7 @@
             <split id="PuzzleSplitter">
                 <simple>${body}</simple>
                 <setHeader headerName="puzzledepth" id="_setHeader2">
-                <simple resultType="java.lang.Integer">0</simple>
+                    <simple resultType="java.lang.Integer">0</simple>
                     <!-- <constant>0</constant> -->
                 </setHeader>
                 <to id="ForwardingToQueue" pattern="InOnly" uri="PuzzlerJMSConnection:queue:{{Puzzler.PuzzleBox.Destination}}?timeToLive=300000&amp;deliveryMode=0"/>

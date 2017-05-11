@@ -147,5 +147,6 @@
 		<module>GUIMonolithic</module>
 		<module>GUIScaleUp</module>
 		<module>FuseImplementation</module>
+		<module>GuiScaleOut</module>
 	</modules>
 </project>
