@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.rhworkshop.msa</groupId>
@@ -52,10 +53,10 @@
 		</dependency>
 		<!-- <dependency> <groupId>org.apache.camel</groupId> <artifactId>camel-cxf</artifactId> <version>${camel.version}</version> </dependency> -->
 		<!-- ActiveMQ connectivity for Camel -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-client</artifactId>
-		</dependency>
+		</dependency> -->
 		<!-- logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -148,5 +149,6 @@
 		<module>GUIScaleUp</module>
 		<module>FuseImplementation</module>
 		<module>GuiScaleOut</module>
-	</modules>
+    	<module>FISImplementation</module>
+  </modules>
 </project>
