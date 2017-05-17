@@ -85,7 +85,7 @@ public class Puzzler implements Runnable {
 			Message smsg = session.createMessage();
 			smsg.setStringProperty("PuzzleID", "12345");
 			smsg.setStringProperty("returnDestination", tdestination.toString().substring("temp-queue://".length()));
-			session.createProducer(session.createQueue("qa.test.yasumi.start")).send(smsg);
+			session.createProducer(session.createQueue(ResourceLoader.getString("blocks.jms.destination"))).send(smsg);
 
 			boolean complete = false;
 			boolean fail = false;

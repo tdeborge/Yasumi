@@ -35,7 +35,7 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-<!-- 		<dependency>
+ 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-core</artifactId>
 		</dependency>
@@ -50,15 +50,15 @@
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-camel</artifactId>
-		</dependency> -->
+		</dependency>
 		<!-- <dependency> <groupId>org.apache.camel</groupId> <artifactId>camel-cxf</artifactId> <version>${camel.version}</version> </dependency> -->
 		<!-- ActiveMQ connectivity for Camel -->
-<!-- 		<dependency>
+ 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-client</artifactId>
-		</dependency> -->
+		</dependency> 
 		<!-- logging -->
-<!-- 		<dependency>
+	<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-		</dependency> -->
+		</dependency>
 
 		<!-- testing -->
 		<dependency>
